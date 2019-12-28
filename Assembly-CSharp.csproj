@@ -64,6 +64,7 @@
   <ItemGroup>
     <Compile Include="Assets\Scripts\Menu.cs" />
     <Compile Include="Assets\Scripts\PauseUI.cs" />
+    <Compile Include="Assets\Scripts\PauseUI2.cs" />
     <Reference Include="Unity.Timeline.Editor">
       <HintPath>D:/Unity/TestProject/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
     </Reference>
