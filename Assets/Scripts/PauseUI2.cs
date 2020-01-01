@@ -5,18 +5,30 @@ using UnityEngine.UI;
 
 public class PauseUI2 : MonoBehaviour
 {
-    public GameObject UIRoot = null;
+    public GameObject PauseUIMenu = null;
+
+    public GameObject BackPackUI;
+    public GameObject SettingUI;
+    public GameObject LoadingUI;
+    public GameObject LeaveUI;
+
+    //public Transform Pause;
 
     // Start is called before the first frame update
     void Start()
     {
-        if (UIRoot != null)
+        BackPackUI.SetActive(false);
+        SettingUI.SetActive(false);
+        LoadingUI.SetActive(false);
+        LeaveUI.SetActive(false);
+
+        if (PauseUIMenu != null)
         {
-            int childCount = UIRoot.transform.childCount;
+            int childCount = PauseUIMenu.transform.childCount;
 
             for (int i = 0; i < childCount; i++)
             {
-                GameObject child = UIRoot.transform.GetChild(i).gameObject;
+                GameObject child = PauseUIMenu.transform.GetChild(i).gameObject;
 
                 if (child.name.Equals("BackPack"))
                 {
@@ -50,27 +62,56 @@ public class PauseUI2 : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (Input.GetKeyDown(KeyCode.Escape)) //按Esc暫停
+        {
+            if (PauseUIMenu.gameObject.activeInHierarchy == false)
+            {
+                PauseUIMenu.gameObject.SetActive(true);
+                Time.timeScale = 0;
+                Cursor.lockState = CursorLockMode.Confined;
+                Cursor.visible = true;
+            }
+            else
+            {
+                BackPackUI.SetActive(false);
+                SettingUI.SetActive(false);
+                LoadingUI.SetActive(false);
+                LeaveUI.SetActive(false);
+                PauseUIMenu.gameObject.SetActive(false);
+                Time.timeScale = 1;
+            }
+        }
     }
 
     public void BackPack()
     {
-        Debug.Log("BackPack");
+        BackPackUI.SetActive(true);
+        SettingUI.SetActive(false);
+        LoadingUI.SetActive(false);
+        LeaveUI.SetActive(false);
     }
 
     public void Setting()
     {
-        Debug.Log("Setting");
+        BackPackUI.SetActive(false);
+        SettingUI.SetActive(true);
+        LoadingUI.SetActive(false);
+        LeaveUI.SetActive(false);
     }
 
     public void Loading()
     {
-        Debug.Log("Loading");
+        BackPackUI.SetActive(false);
+        SettingUI.SetActive(false);
+        LoadingUI.SetActive(true);
+        LeaveUI.SetActive(false);
     }
 
     public void Leave()
     {
-        Debug.Log("Leave");
-        Application.Quit();
+        BackPackUI.SetActive(false);
+        SettingUI.SetActive(false);
+        LoadingUI.SetActive(false);
+        LeaveUI.SetActive(true);
     }
 }

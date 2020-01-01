@@ -8,9 +8,6 @@ public class PauseUI : MonoBehaviour
     public GameObject UIRoot = null;
 
     public Transform canvas;
-    //public Transform player;
-    //public Transform interact;
-    //public GameObject InteractionIcon;
 
     public GameObject lodingScreen;
     public Slider slider;
